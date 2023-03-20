@@ -1,4 +1,4 @@
-# Password Generator Starter Code
+# Random Password Generator
 
 ## User Story
 
@@ -33,3 +33,5 @@ THEN the password is either displayed in an alert or written to the page
 https://github.com/coding-boot-camp/friendly-parakeet
 
 ## Link to Live Page
+
+https://jayson-baker.github.io/Random_Password_Generator/
