@@ -3,7 +3,9 @@
 // TODO: Add prompts for user to select what type of values can be used in password.
 function generatePassword() {
   // User Selections here
-  let wantsLetters = confirm("Would you like lowercase letters in your password?");
+  let wantsLetters = confirm(
+    "Would you like lowercase letters in your password?"
+  );
   let letters = [
     "a",
     "b",
@@ -32,8 +34,37 @@ function generatePassword() {
     "y",
     "z",
   ];
-  let wantsUpperLetters = confirm("Would you like uppercase letters in your password?")
-  let upperLetters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+  let wantsUpperLetters = confirm(
+    "Would you like uppercase letters in your password?"
+  );
+  let upperLetters = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
+  ];
   let wantsNumbers = confirm("Would you like numbers in your password?");
   let numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
   let wantsSymbols = confirm("Would you like symbols in your password?");
@@ -62,34 +93,34 @@ function generatePassword() {
   );
   let passwordSelections = [];
   // Creating the output for generatePassword()
-  let passwordOutput = ""
-  let numOfTrue = 0
+  let passwordOutput = "";
+  let numOfTrue = 0;
 
   // Creating the user selected array
   if (wantsLetters === true) {
     passwordSelections = passwordSelections.concat(letters);
-    randomNum = Math.floor(Math.random() * letters.length)
-    passwordOutput += letters[randomNum]
-    numOfTrue++
+    randomNum = Math.floor(Math.random() * letters.length);
+    passwordOutput += letters[randomNum];
+    numOfTrue++;
   }
   if (wantsUpperLetters === true) {
     passwordSelections = passwordSelections.concat(upperLetters);
-    randomNum = Math.floor(Math.random() * upperLetters.length)
-    passwordOutput += upperLetters[randomNum]
-    numOfTrue++
+    randomNum = Math.floor(Math.random() * upperLetters.length);
+    passwordOutput += upperLetters[randomNum];
+    numOfTrue++;
   }
   if (wantsNumbers === true) {
     passwordSelections = passwordSelections.concat(numbers);
-    randomNum = Math.floor(Math.random() * numbers.length)
-    passwordOutput += numbers[randomNum]
-    numOfTrue++
+    randomNum = Math.floor(Math.random() * numbers.length);
+    passwordOutput += numbers[randomNum];
+    numOfTrue++;
   }
 
   if (wantsSymbols === true) {
     passwordSelections = passwordSelections.concat(symbols);
-    randomNum = Math.floor(Math.random() * symbols.length)
-    passwordOutput += symbols[randomNum]
-    numOfTrue++
+    randomNum = Math.floor(Math.random() * symbols.length);
+    passwordOutput += symbols[randomNum];
+    numOfTrue++;
   }
 
   // Checking to make sure the user input a valid NUMBER
@@ -100,17 +131,14 @@ function generatePassword() {
     );
   }
 
-  
-  
   // Garentee that at least one of each user selection is in the generated password
 
-
-  for (i = 0; i < (passwordLength - numOfTrue); i++) { 
-    randomNum = Math.floor(Math.random() * passwordSelections.length)
-    passwordOutput += passwordSelections[randomNum]
+  for (i = 0; i < passwordLength - numOfTrue; i++) {
+    randomNum = Math.floor(Math.random() * passwordSelections.length);
+    passwordOutput += passwordSelections[randomNum];
   }
-  
-  return passwordOutput
+
+  return passwordOutput;
 }
 
 // Get references to the #generate element

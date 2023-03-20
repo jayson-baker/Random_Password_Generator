@@ -28,6 +28,11 @@ WHEN the password is generated
 THEN the password is either displayed in an alert or written to the page
 ```
 
+## Screenshots
+
+![Notused](./assets/images/Landingpage_Password_Generator.png)
+![Used](./assets/images/Password_Generator_Used.png)
+
 ## Link to Source Code
 
 https://github.com/coding-boot-camp/friendly-parakeet
