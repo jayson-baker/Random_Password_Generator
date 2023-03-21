@@ -88,9 +88,7 @@ function generatePassword() {
     "{",
     "}",
   ];
-  let passwordLength = prompt(
-    "How long would you like your password to be? Min:8 Max:128"
-  );
+  
   let passwordSelections = [];
   // Creating the output for generatePassword()
   let passwordOutput = "";
@@ -103,12 +101,14 @@ function generatePassword() {
     passwordOutput += letters[randomNum];
     numOfTrue++;
   }
+
   if (wantsUpperLetters === true) {
     passwordSelections = passwordSelections.concat(upperLetters);
     randomNum = Math.floor(Math.random() * upperLetters.length);
     passwordOutput += upperLetters[randomNum];
     numOfTrue++;
   }
+
   if (wantsNumbers === true) {
     passwordSelections = passwordSelections.concat(numbers);
     randomNum = Math.floor(Math.random() * numbers.length);
@@ -123,6 +123,16 @@ function generatePassword() {
     numOfTrue++;
   }
 
+  // What happens if they click cancel on all of them?
+  if (wantsLetters === false && wantsUpperLetters === false && wantsNumbers === false && wantsSymbols === false) {
+    passwordOutput = "Please try again."
+    alert ("No password options selected. Please try agin.")
+    return passwordOutput
+  }
+
+  let passwordLength = prompt(
+    "How long would you like your password to be? Min:8 Max:128"
+  );
   // Checking to make sure the user input a valid NUMBER
   while (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
     alert("Please enter a password length between 8 and 128 characters");
