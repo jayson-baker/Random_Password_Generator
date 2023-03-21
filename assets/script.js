@@ -1,103 +1,43 @@
-// Assignment code here
-
-// TODO: Add prompts for user to select what type of values can be used in password.
 function generatePassword() {
-  // User Selections here
+  let passwordSelections = [];
+  // Using numOfTrue to guarantee that at least one of each selection made will be in password
+  let numOfTrue = 0;
+  let passwordOutput = "";
+
+  function randomNum(arr){
+    Math.floor(Math.random() * arr.length);
+  }
+
+
+
+
+  // Creating arrays from strings
+  let letters = Array.from("abcdefghijklmnopqrstuvwxyz");
+  let upperLetters = letters.map(function (letter) {
+    return letter.toUpperCase();
+  });
+  let numbers = Array.from({ length: 10 }, function (v, i) {
+    return i;
+  });
+  let symbols = Array.from("!@#$%^&*()_+-=[]{}");
+
+  // Gathering User Inputs here
   let wantsLetters = confirm(
     "Would you like lowercase letters in your password?"
   );
-  let letters = [
-    "a",
-    "b",
-    "c",
-    "d",
-    "e",
-    "f",
-    "g",
-    "h",
-    "i",
-    "j",
-    "k",
-    "l",
-    "m",
-    "n",
-    "o",
-    "p",
-    "q",
-    "r",
-    "s",
-    "t",
-    "u",
-    "v",
-    "w",
-    "x",
-    "y",
-    "z",
-  ];
+
   let wantsUpperLetters = confirm(
     "Would you like uppercase letters in your password?"
   );
-  let upperLetters = [
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-    "G",
-    "H",
-    "I",
-    "J",
-    "K",
-    "L",
-    "M",
-    "N",
-    "O",
-    "P",
-    "Q",
-    "R",
-    "S",
-    "T",
-    "U",
-    "V",
-    "W",
-    "X",
-    "Y",
-    "Z",
-  ];
-  let wantsNumbers = confirm("Would you like numbers in your password?");
-  let numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-  let wantsSymbols = confirm("Would you like symbols in your password?");
-  let symbols = [
-    "!",
-    "@",
-    "#",
-    "$",
-    "%",
-    "^",
-    "&",
-    "*",
-    "(",
-    ")",
-    "_",
-    "+",
-    "-",
-    "=",
-    "[",
-    "]",
-    "{",
-    "}",
-  ];
-  
-  let passwordSelections = [];
-  // Creating the output for generatePassword()
-  let passwordOutput = "";
-  let numOfTrue = 0;
 
-  // Creating the user selected array
+  let wantsNumbers = confirm("Would you like numbers in your password?");
+
+  let wantsSymbols = confirm("Would you like symbols in your password?");
+
+  // Checking what user selected and adding them to the passwordSelections array
   if (wantsLetters === true) {
     passwordSelections = passwordSelections.concat(letters);
-    randomNum = Math.floor(Math.random() * letters.length);
+    randomNum(letters)
     passwordOutput += letters[randomNum];
     numOfTrue++;
   }
@@ -124,15 +64,22 @@ function generatePassword() {
   }
 
   // What happens if they click cancel on all of them?
-  if (wantsLetters === false && wantsUpperLetters === false && wantsNumbers === false && wantsSymbols === false) {
-    passwordOutput = "Please try again."
-    alert ("No password options selected. Please try agin.")
-    return passwordOutput
+  if (
+    wantsLetters === false &&
+    wantsUpperLetters === false &&
+    wantsNumbers === false &&
+    wantsSymbols === false
+  ) {
+    passwordOutput = "Please try again.";
+    alert("No password options selected. Please try agin.");
+    return passwordOutput;
   }
 
+  // Prompting user for a desired password length
   let passwordLength = prompt(
     "How long would you like your password to be? Min:8 Max:128"
   );
+
   // Checking to make sure the user input a valid NUMBER
   while (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
     alert("Please enter a password length between 8 and 128 characters");
@@ -141,8 +88,7 @@ function generatePassword() {
     );
   }
 
-  // Garentee that at least one of each user selection is in the generated password
-
+  // Creating the random password
   for (i = 0; i < passwordLength - numOfTrue; i++) {
     randomNum = Math.floor(Math.random() * passwordSelections.length);
     passwordOutput += passwordSelections[randomNum];
