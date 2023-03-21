@@ -1,6 +1,6 @@
 function generatePassword() {
   let passwordSelections = [];
-  // Using numOfTrue to guarantee that at least one of each selection made will be in password
+  // Using numOfTrue to track how many times user inputs are true
   let numOfTrue = 0;
   let passwordOutput = "";
 
@@ -10,9 +10,7 @@ function generatePassword() {
   let upperLetters = letters.map(function (letter) {
     return letter.toUpperCase();
   });
-  let numbers = Array.from({ length: 10 }, function (value, index) {
-    return index;
-  });
+  let numbers = Array.from("0123456789");
   let symbols = Array.from("!@#$%^&*()_+-=[]{}");
 
   function concatOnUserInput(arr, inqueryString) {
@@ -40,17 +38,15 @@ function generatePassword() {
     return passwordOutput;
   }
 
+  let promptMessage =
+    "How long would you like your password to be? Min:8 Max:128";
   // Prompting user for a desired password length
-  let passwordLength = prompt(
-    "How long would you like your password to be? Min:8 Max:128"
-  );
+  let passwordLength = prompt(promptMessage);
 
   // Checking to make sure the user input a valid NUMBER
   while (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
     alert("Please enter a password length between 8 and 128 characters");
-    passwordLength = prompt(
-      "How long would you like your password to be? Min:8 Max:128"
-    );
+    passwordLength = prompt(promptMessage);
   }
 
   // Creating the random password
