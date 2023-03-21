@@ -4,65 +4,37 @@ function generatePassword() {
   let numOfTrue = 0;
   let passwordOutput = "";
 
-  // Creating arrays from strings
+  // Creating arrays for generator to use
   let letters = Array.from("abcdefghijklmnopqrstuvwxyz");
+
   let upperLetters = letters.map(function (letter) {
     return letter.toUpperCase();
   });
-  let numbers = Array.from({ length: 10 }, function (v, i) {
-    return i;
+  let numbers = Array.from({ length: 10 }, function (value, index) {
+    return index;
   });
   let symbols = Array.from("!@#$%^&*()_+-=[]{}");
 
-  // Gathering User Inputs here
-  let wantsLetters = confirm(
-    "Would you like lowercase letters in your password?"
-  );
-
-  let wantsUpperLetters = confirm(
-    "Would you like uppercase letters in your password?"
-  );
-
-  let wantsNumbers = confirm("Would you like numbers in your password?");
-
-  let wantsSymbols = confirm("Would you like symbols in your password?");
-
-  // Checking what user selected and adding them to the passwordSelections array
-  if (wantsLetters === true) {
-    passwordSelections = passwordSelections.concat(letters);
-    randomNum = Math.floor(Math.random() * letters.length);
-    passwordOutput += letters[randomNum];
-    numOfTrue++;
+  function concatOnUserInput(arr, inqueryString) {
+    let userOkay = confirm(
+      "Would you like " + inqueryString + " in your password."
+    );
+    if (userOkay === true) {
+      passwordSelections = passwordSelections.concat(arr);
+      // Insure that we have at least one character for each user input of true
+      randomNum = Math.floor(Math.random() * arr.length);
+      passwordOutput += arr[randomNum];
+      numOfTrue++;
+    }
   }
 
-  if (wantsUpperLetters === true) {
-    passwordSelections = passwordSelections.concat(upperLetters);
-    randomNum = Math.floor(Math.random() * upperLetters.length);
-    passwordOutput += upperLetters[randomNum];
-    numOfTrue++;
-  }
-
-  if (wantsNumbers === true) {
-    passwordSelections = passwordSelections.concat(numbers);
-    randomNum = Math.floor(Math.random() * numbers.length);
-    passwordOutput += numbers[randomNum];
-    numOfTrue++;
-  }
-
-  if (wantsSymbols === true) {
-    passwordSelections = passwordSelections.concat(symbols);
-    randomNum = Math.floor(Math.random() * symbols.length);
-    passwordOutput += symbols[randomNum];
-    numOfTrue++;
-  }
+  concatOnUserInput(letters, "lowercase letters");
+  concatOnUserInput(upperLetters, "upercase letters");
+  concatOnUserInput(numbers, "numbers");
+  concatOnUserInput(symbols, "symbols");
 
   // What happens if they click cancel on all of them?
-  if (
-    wantsLetters === false &&
-    wantsUpperLetters === false &&
-    wantsNumbers === false &&
-    wantsSymbols === false
-  ) {
+  if (passwordSelections.length === 0) {
     passwordOutput = "Please try again.";
     alert("No password options selected. Please try agin.");
     return passwordOutput;
