@@ -4,13 +4,6 @@ function generatePassword() {
   let numOfTrue = 0;
   let passwordOutput = "";
 
-  function randomNum(arr){
-    Math.floor(Math.random() * arr.length);
-  }
-
-
-
-
   // Creating arrays from strings
   let letters = Array.from("abcdefghijklmnopqrstuvwxyz");
   let upperLetters = letters.map(function (letter) {
@@ -37,7 +30,7 @@ function generatePassword() {
   // Checking what user selected and adding them to the passwordSelections array
   if (wantsLetters === true) {
     passwordSelections = passwordSelections.concat(letters);
-    randomNum(letters)
+    randomNum = Math.floor(Math.random() * letters.length);
     passwordOutput += letters[randomNum];
     numOfTrue++;
   }
